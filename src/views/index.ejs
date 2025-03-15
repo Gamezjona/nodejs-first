@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOSERO Tech</title>
+    <%- include('partials/head.ejs') %>
+    <link rel="stylesheet" href="resources/css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: url('https://images.pexels.com/photos/29738255/pexels-photo-29738255/free-photo-of-representacion-abstracta-de-un-paisaje-urbano-en-3d-con-degradado.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Evitar desbordamientos */
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 700px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(255, 120, 150, 0.5);
+            animation: fadeIn 1.5s ease-in-out;
+            max-height: 90vh; /* Limitar altura */
+            overflow: auto; /* Permitir desplazamiento si es necesario */
+        }
+
+        .container h1 {
+            font-size: 4vw;
+            margin-bottom: 10px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+
+        .container p {
+            font-size: 2vw;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 14px 30px;
+            font-size: 18px;
+            margin: 15px;
+            border-radius: 8px;
+            transition: 0.3s ease-in-out;
+            font-weight: bold;
+        }
+
+        .btn-login {
+            background: #e78aa9;
+            color: #121212;
+            box-shadow: 0 0 10px #e78aa9;
+        }
+
+        .btn-login:hover {
+            background: #ff9ecf;
+            box-shadow: 0 0 20px #ff9ecf;
+        }
+
+        .btn-register {
+            background: none;
+            color: #fcdbff;
+            border: 2px solid #e78aa9;
+        }
+
+        .btn-register:hover {
+            background: #ecb7e7;
+            color: #121212;
+            box-shadow: 0 0 20px #ecb7e7;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0px 0px 5px rgba(255, 120, 150, 0.7);
+            }
+            to {
+                text-shadow: 0px 0px 15px rgba(255, 120, 150, 1);
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .container h1 {
+                font-size: 5vw;
+            }
+
+            .container p {
+                font-size: 3.5vw;
+            }
+
+            .buttons a {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container h1 {
+                font-size: 6vw;
+            }
+
+            .container p {
+                font-size: 4vw;
+            }
+
+            .buttons a {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Bienvenido a JOBUSS Tech</h1>
+    <p>Innovación y creatividad para impulsar la tecnología. Conectamos ideas con soluciones para el futuro.</p>
+
+    <div class="buttons">
+
+        <a href="/login" class="btn-login">Iniciar Sesión</a>
+        <a href="/registro" class="btn-register">Registrarse</a>    
+    </div>
+</div>
+
+</body>
+</html>

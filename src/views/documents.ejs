@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentos</title>
+    <%- include('partials/head.ejs') %>
+  </head>
+  <body>
+    <%- include('partials/navigation.ejs') %>
+
+    <section>
+      <div class="wrapper">
+        <h2 class="tituloWraper">Documentos Subidos <%= usuario.id %></h2>
+
+        <div class="table-container">
+          <table class="tablaWraper">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="documents">
+                <% if (documents.length > 0) { %>
+                    <% documents.forEach(doc => { %>
+                        <tr>
+                            <td><%= doc.id %></td>
+                            <td><%= doc.nombre %></td>
+                            <td><%= doc.tipo_archivo %></td>
+                            <td>
+                              <!-- Usamos un formulario para enviar una solicitud DELETE -->
+                              <form action="/documentos/<%= doc.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este documento?');">Borrar</button>
+                              </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="3" style="text-align: center;">No hay documentos disponibles</td>
+                    </tr>
+                <% } %>
+            </tbody>
+          </table>
+        </div>
+
+        <button class="btnSubir" onclick="location.href='/documentos/crear'">
+          Agregar Documento
+        </button>
+      </div>
+    </section>
+
+    <%- include('partials/footer.ejs') %> <%- include('partials/scripts.ejs') %>
+  </body>
+</html>

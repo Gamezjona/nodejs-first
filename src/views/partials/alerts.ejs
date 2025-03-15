@@ -1,0 +1,10 @@
+<% if (errorMessage) { %>
+  <script>
+    Swal.fire({
+      title: 'Error!',
+      text: '<%= errorMessage %>',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+  </script>
+<% } %>
