@@ -1,5 +1,14 @@
 import pool from "../config/db.js";
 import session from "express-session"; // Asegúrate de tener esta dependencia instalada
+import path from "path";
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+
+
+// Obtener el nombre y la ruta del archivo actual
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 export const perfil = (req, res) => {
   res.render("perfil");
@@ -48,32 +57,6 @@ export const documentosUser = async (req, res) => {
 
 export const crearDocumento = (req, res) => {
   res.render("newDocument");
-};
-
-export const usuarios = async (req, res) => {
-  if (!req.session.usuario) {
-    req.session.error = "Necesita iniciar sesión para acceder.";
-    return res.redirect("/login"); // Redirigir a login si no hay sesión
-  }
-
-  try {
-    if (req.session.usuario.nombre !== "Admin") {
-      throw new Error("El usuario debe ser admin.");
-    }
-
-    // Obtener usuarios
-    const [users] = await pool.query("SELECT * FROM usuarios WHERE  nombre != 'Admin'");
-
-    console.log("Usuarios Extraídos:", users);
-
-    return res.render("listadousuarios", { users });
-
-
-  } catch (error) {
-    console.error("Error:", error.message);
-    req.session.error = error.message;
-    return res.redirect("/login");
-  }
 };
 
 export const crearUsuario = async (req, res) => {
@@ -163,7 +146,7 @@ export const validarUsuario = async (req, res) => {
 
     console.log("Usuario autenticado:", req.session.usuario);
 
-    if (usuario.nombre == "Admin") {
+    if (usuario.correo == "admin@main.com") {
       return res.redirect("/usuarios");
     } else {
       return res.redirect("/documentos");
@@ -175,12 +158,43 @@ export const validarUsuario = async (req, res) => {
   }
 };
 
+export const usuarios = async (req, res) => {
+  if (!req.session.usuario) {
+    req.session.error = "Necesita iniciar sesión para acceder.";
+    return res.redirect("/login"); // Redirigir a login si no hay sesión
+  }
+
+  try {
+    if (req.session.usuario.nombre !== "Admin") {
+      throw new Error("El usuario debe ser admin.");
+    }
+
+    // Obtener usuarios
+    const [users] = await pool.query(
+      "SELECT * FROM usuarios WHERE  nombre != 'Admin'"
+    );
+
+    console.log("Usuarios Extraídos:", users);
+
+    const errorMessage = req.session.error; // Obtiene el mensaje de error de la sesión
+    req.session.error = null;
+
+    return res.render("listaUsuarios", { users ,errorMessage});
+    
+  } catch (error) {
+    console.error("Error:", error.message);
+    req.session.error = error.message;
+    return res.redirect("/login");
+  }
+};
+
+
 export const eliminarUsuario = async (req, res) => {
-  const userId = req.session.usuario?.id; // Obtener el ID del usuario desde la sesión
+  const { userId } = req.params;
 
   if (!userId) {
-    req.session.error = "Necesita iniciar sesión para acceder.";
-    return res.redirect("/login");
+    req.session.error = "Necesita pasar bien los datos";
+    return res.redirect("/usuarios");
   }
 
   try {
@@ -189,8 +203,6 @@ export const eliminarUsuario = async (req, res) => {
       "SELECT * FROM documentos WHERE usuario_id = ?",
       [userId]
     );
-
-
 
     // 2️⃣ Eliminar los archivos locales
     documentos.forEach((doc) => {
@@ -210,8 +222,8 @@ export const eliminarUsuario = async (req, res) => {
     await pool.query("DELETE FROM usuarios WHERE id = ?", [userId]);
 
     console.log("Usuario y documentos eliminados correctamente.");
-    
-     // Cerrar sesión después de eliminar la cuenta
+
+    // Cerrar sesión después de eliminar la cuenta
     return res.redirect("/usuarios"); // Redirigir al login después de eliminar la cuenta
   } catch (error) {
     console.error("Error al eliminar usuario y documentos:", error.message);
@@ -219,6 +231,5 @@ export const eliminarUsuario = async (req, res) => {
     return res.redirect("/usuarios");
   }
 };
-
 
 export const usuarioPorId = (req, res) => {};
