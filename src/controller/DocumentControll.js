@@ -172,7 +172,8 @@ export const eliminarDocumento = async (req, res) => {
     res.redirect("/documentos");  // Redirigir a la lista de documentos después de la eliminación
   } catch (error) {
     console.error("Error al eliminar el documento:", error.message);
-    res.status(500).send("Error al eliminar el documento.");
+    req.session.error = "Necesita iniciar sesión para acceder.";
+    res.redirect("/documentos");
   }
 };
 

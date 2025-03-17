@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <%- include('partials/scripts.ejs') %>
-    <!-- Incluir SweetAlert2 si está en este archivo -->
+    <%- include('partials/head.ejs') %>
   </head>
   <body>
+
+    <%- include('partials/navigationLogins.ejs') %>
+
     <form action="/login" method="post">
       <input type="email" placeholder="Correo" name="email" required />
       <input
