@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi perfil</title>
     <%- include('partials/head.ejs') %>
-</head>
-<body>
+  </head>
+  <body>
     <%- include('partials/navigation.ejs') %>
 
+    <form action="/usuarios" method="PUT">
+      <h2>Perfil</h2>
 
-    <%- include('partials/footer.ejs') %>
+      <label for="ipNombre">Nombre(s)</label>
+      <input id="ipNombre" name="nombre" type="text" required value="<%= user.nombre %>" />
 
-    <%- include('partials/scripts.ejs') %> 
-    <%- include('partials/alerts.ejs') %>  
-     
-</body>
+      <label for="ipApellido">Apellidos</label>
+      <input id="ipApellido" name="apellido" type="text" required value="<%= user.apellidos %>"/>
+
+      <label for="ipPwd">Contraseña</label>
+      <input id="ipPwd" name="password" type="password" required value="<%= user.contraseñas%>"/>
+
+      <input type="submit" value="Enviar" class="btn btn-primary" />
+    </form>
+
+    <%- include('partials/footer.ejs') %> <%- include('partials/scripts.ejs') %>
+    <%- include('partials/alerts.ejs') %>
+  </body>
 </html>

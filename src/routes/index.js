@@ -31,7 +31,7 @@ router.get("/cerrarSesion", (req, res) => {
   });
 });
 
-router.get("/perfil", (req, res) => {
+router.get("/usuario/edit", (req, res) => {
   if (!req.session.usuario) {
     req.session.error = "Necesita iniciar sesión para acceder.";
     return res.redirect("/login"); // Redirigir a login si no hay sesión
