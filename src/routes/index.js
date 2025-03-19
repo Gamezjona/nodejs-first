@@ -31,17 +31,7 @@ router.get("/cerrarSesion", (req, res) => {
   });
 });
 
-router.get("/usuario/edit", (req, res) => {
-  if (!req.session.usuario) {
-    req.session.error = "Necesita iniciar sesión para acceder.";
-    return res.redirect("/login"); // Redirigir a login si no hay sesión
-  }
-
-  const errorMessage = req.session.error; // Obtiene el mensaje de error de la sesión
-  req.session.error = null;
-
-  res.render("perfil", { errorMessage: errorMessage });
-});
+router.get("/usuarios/:id/edit", UserController.usuarioPorId);
 
 router.get("/documentos", UserController.documentosUser);
 
@@ -54,7 +44,7 @@ router.get("/documentos/crear", (req, res) => {
   const errorMessage = req.session.error; // Obtiene el mensaje de error de la sesión
   req.session.error = null;
 
-  res.render("newDocument", { errorMessage: errorMessage });
+  res.render("newDocument", { errorMessage: errorMessage, usuario: req.session.usuario });
 });
 
 router.post("/documentos",DocumentController.subirDocumento);
@@ -67,6 +57,9 @@ router.post("/usuarios", UserController.crearUsuario);
 
 //Valida el usuario
 router.post("/login", UserController.validarUsuario);
+
+
+router.post("/usuarios/edit", UserController.editarUsuario);
 
 router.delete('/documentos/:documentoId', DocumentController.eliminarDocumento);
 

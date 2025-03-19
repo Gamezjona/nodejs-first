@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,12 @@
     <%- include('partials/head.ejs') %>
   </head>
   <body>
-    <%- include('partials/navigation.ejs') %>
+    <%- include('partials/navigation.ejs', { url: "<a class='nav-link' href='/usuarios/" + usuario.id + "/edit'>Perfil</a>"}) %>
+
 
     <section>
       <div class="wrapper">
-        <h2 class="tituloWraper">Documentos Subidos <%= usuario.id %></h2>
+        <h2 class="tituloWraper">Documentos Subidos <%= usuario.nombre %></h2>
 
         <div class="table-container">
           <table class="tablaWraper">
@@ -24,25 +25,25 @@
               </tr>
             </thead>
             <tbody id="documents">
-                <% if (documents.length > 0) { %>
-                    <% documents.forEach(doc => { %>
-                        <tr>
-                            <td><%= doc.id %></td>
-                            <td><%= doc.nombre %></td>
-                            <td><%= doc.tipo_archivo %></td>
-                            <td>
-                              <!-- Usamos un formulario para enviar una solicitud DELETE -->
-                              <form action="/documentos/<%= doc.id %>?_method=DELETE" method="POST" style="display:inline;">
-                                <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este documento?');">Borrar</button>
-                              </form>
-                            </td>
-                        </tr>
-                    <% }); %>
-                <% } else { %>
+              <% if (documents && documents.length > 0) { %>
+                <% documents.forEach(doc => { %>
                     <tr>
-                        <td colspan="3" style="text-align: center;">No hay documentos disponibles</td>
+                      <td><%= doc.id %></td>
+                      <td><%= doc.nombre %></td>
+                      <td><%= doc.tipo_archivo %></td>
+                      <td>
+                        <!-- Usamos un formulario para enviar una solicitud DELETE -->
+                        <form action="/documentos/<%= doc.id %>?_method=DELETE" method="POST" style="display:inline;">
+                          <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este documento?');">Borrar</button>
+                        </form>
+                      </td>
                     </tr>
-                <% } %>
+                <% }); %>
+              <% } else { %>
+                <tr>
+                  <td colspan="4" style="text-align: center;">No hay documentos disponibles</td>
+                </tr>
+              <% } %>
             </tbody>
           </table>
         </div>
@@ -53,6 +54,7 @@
       </div>
     </section>
 
-    <%- include('partials/footer.ejs') %> <%- include('partials/scripts.ejs') %>
+    <%- include('partials/footer.ejs') %> 
+    <%- include('partials/scripts.ejs') %>
   </body>
 </html>

@@ -7,19 +7,55 @@
     <%- include('partials/head.ejs') %>
   </head>
   <body>
-    <%- include('partials/navigation.ejs') %>
+    <%- include('partials/navigation.ejs', { url: ""}) %>
 
-    <form action="/usuarios" method="PUT">
+    <form action="/usuarios/edit" method="POST">
+      
       <h2>Perfil</h2>
 
+      <input
+        id="ipId"
+        name="id"
+        type="hidden"
+        required
+        value="<%= user.id %>"
+      />
+
       <label for="ipNombre">Nombre(s)</label>
-      <input id="ipNombre" name="nombre" type="text" required value="<%= user.nombre %>" />
+      <input
+        id="ipNombre"
+        name="nombre"
+        type="text"
+        required
+        value="<%= user.nombre %>"
+      />
 
       <label for="ipApellido">Apellidos</label>
-      <input id="ipApellido" name="apellido" type="text" required value="<%= user.apellidos %>"/>
+      <input
+        id="ipApellido"
+        name="apellido"
+        type="text"
+        required
+        value="<%= user.apellido %>"
+      />
+
+      <label for="ipApellido">Correo</label>
+      <input
+        id="email"
+        name="email"
+        type="text"
+        required
+        value="<%= user.correo %>"
+      />
 
       <label for="ipPwd">Contraseña</label>
-      <input id="ipPwd" name="password" type="password" required value="<%= user.contraseñas%>"/>
+      <input
+        id="ipPwd"
+        name="password"
+        type="text"
+        required
+        value="<%= user.contrasena %>"
+      />
 
       <input type="submit" value="Enviar" class="btn btn-primary" />
     </form>

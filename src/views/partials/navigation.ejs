@@ -14,12 +14,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/perfil">Mi Perfil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/documentos">Documentos</a>
-        </li>
+        <% if (usuario.correo !== "admin@main.com") { %>
+
+        <!-- AQUI VA EL URL QUE LLEVARA AL PERFIL DEL USUARIO -->
+          <li class="nav-item"><%- (url && url.length > 0) ? url : "" %></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/documentos">Documentos</a>
+          </li>
+          <% }else{%>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/usuarios">Lista Usuarios</a>
+            </li>
+          <% } %>
+        
         <li class="nav-item">
           <a class="nav-link" href="/cerrarSesion">Cerrar Sesion</a>
         </li>

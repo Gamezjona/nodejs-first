@@ -7,7 +7,7 @@
     <%- include('partials/head.ejs') %>
 </head>
 <body>
-    <%- include('partials/navigation.ejs') %>
+    <%- include('partials/navigation.ejs',{ url: "<a class='nav-link' href='/usuarios/" + usuario.id + "/edit'>Perfil</a>"}) %>
 
     <h1>Nuevo Fomulario para documento</h1>
 
