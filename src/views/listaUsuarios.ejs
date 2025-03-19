@@ -31,9 +31,7 @@
                             <td><%= doc.id %></td>
                             <td><%= doc.nombre %></td>
                             <td><%= doc.correo %></td>
-                            <td><form action="/usuarios/<%= doc.id %>?_method=PUT" method="POST" style="display:inline;">
-                                <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este documento?');">Editar</button>
-                              </form></td>
+                            <td><a href=<%= "/usuarios/" +doc.id + "/edit"  %>>Editar</a></td>
                             <td>
                               <!-- Usamos un formulario para enviar una solicitud DELETE -->
                               <form action="/usuarios/<%= doc.id %>?_method=DELETE" method="POST" style="display:inline;">

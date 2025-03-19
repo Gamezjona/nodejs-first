@@ -14,7 +14,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <% if (usuario.correo !== "admin@main.com") { %>
+        <% if (usuario.correo == "admin@main.com") { %>
 
         <!-- AQUI VA EL URL QUE LLEVARA AL PERFIL DEL USUARIO -->
           <li class="nav-item"><%- (url && url.length > 0) ? url : "" %></li>
