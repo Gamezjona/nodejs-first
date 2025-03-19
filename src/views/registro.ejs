@@ -1,52 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <%- include('partials/scripts.ejs') %> 
     <%- include('partials/head.ejs') %>
-  </head>
-  <body>
+</head>
+<body>
     <%- include('partials/navigationLogins.ejs') %>
 
-    <div class="container mt-5 pt-5">
-      <div class="card shadow p-4 animate__animated animate__fadeIn">
-        <h2 class="text-center mb-4">Registro</h2>
+    <div class="container mt-5">
+        <h2 class="text-center">Registro</h2>
         <form action="/usuarios" method="post">
-          <div class="mb-3">
-            <label for="ipNombre" class="form-label">Nombre(s)</label>
-            <input id="ipNombre" name="nombre" type="text" class="form-control" required />
-          </div>
+            <div class="mb-3">
+                <label for="ipNombre" class="form-label">Nombre(s)</label>
+                <input type="text" class="form-control" id="ipNombre" name="nombre" required>
+            </div>
 
-          <div class="mb-3">
-            <label for="ipApellido" class="form-label">Apellidos</label>
-            <input id="ipApellido" name="apellido" type="text" class="form-control" required />
-          </div>
+            <div class="mb-3">
+                <label for="ipApellido" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="ipApellido" name="apellido" required>
+            </div>
 
-          <div class="mb-3">
-            <label for="ipEmail" class="form-label">Correo Electrónico</label>
-            <input id="ipEmail" name="email" type="email" class="form-control" required />
-          </div>
+            <div class="mb-3">
+                <label for="ipEmail" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="ipEmail" name="email" required>
+            </div>
 
-          <div class="mb-3">
-            <label for="ipPwd" class="form-label">Contraseña</label>
-            <input id="ipPwd" name="password" type="password" class="form-control" required />
-          </div>
+            <div class="mb-3">
+                <label for="ipPwd" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="ipPwd" name="password" required>
+            </div>
 
-          <div class="mb-3">
-            <label for="ipPwd2" class="form-label">Confirmar Contraseña</label>
-            <input id="ipPwd2" name="password2" type="password" class="form-control" required />
-          </div>
+            <div class="mb-3">
+                <label for="ipPwd2" class="form-label">Confirmar Contraseña</label>
+                <input type="password" class="form-control" id="ipPwd2" name="password2" required>
+            </div>
 
-          <div class="d-flex justify-content-center">
-            <input type="submit" value="Enviar" class="btn btn-primary" />
-          </div>
+            <button type="submit" class="btn btn-primary w-100">Registrar</button>
         </form>
-      </div>
     </div>
 
-    <%- include('partials/alerts.ejs') %>
+    <%- include('partials/footer.ejs') %>
     <%- include('partials/scripts.ejs') %>
-  </body>
+</body>
 </html>

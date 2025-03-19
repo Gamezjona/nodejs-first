@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+
     <title>Nuevo Documento</title>
     <%- include('partials/head.ejs') %>
 </head>
 <body>
-    <%- include('partials/navigation.ejs',{ url: "<a class='nav-link' href='/usuarios/" + usuario.id + "/edit'>Perfil</a>"}) %>
+    <%- include('partials/navigation.ejs', { url: "<a class='nav-link' href='/usuarios/" + usuario.id + "/edit'>Perfil</a>"}) %>
     
     <div class="container mt-5">
         <div class="card shadow p-4">
@@ -26,6 +28,5 @@
     
     <%- include('partials/footer.ejs') %>
     <%- include('partials/scripts.ejs') %>
-    <%- include('partials/alerts.ejs') %>
 </body>
 </html>
