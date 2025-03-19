@@ -1,60 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentos</title>
     <%- include('partials/head.ejs') %>
-  </head>
-  <body>
-    <%- include('partials/navigation.ejs', { url: "<a class='nav-link' href='/usuarios/" + usuario.id + "/edit'>Perfil</a>"}) %>
-
-
-    <section>
-      <div class="wrapper">
-        <h2 class="tituloWraper">Documentos Subidos <%= usuario.nombre %></h2>
-
-        <div class="table-container">
-          <table class="tablaWraper">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Tipo</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="documents">
-              <% if (documents && documents.length > 0) { %>
-                <% documents.forEach(doc => { %>
+</head>
+<body>
+  <%- include('partials/navigation.ejs', { url: "<a class='nav-link' href='/usuarios/" + usuario.id + "/edit'>Perfil</a>"}) %>
+    
+    <div class="container mt-4">
+        <h2 class="text-center">Documentos Subidos</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
                     <tr>
-                      <td><%= doc.id %></td>
-                      <td><%= doc.nombre %></td>
-                      <td><%= doc.tipo_archivo %></td>
-                      <td>
-                        <!-- Usamos un formulario para enviar una solicitud DELETE -->
-                        <form action="/documentos/<%= doc.id %>?_method=DELETE" method="POST" style="display:inline;">
-                          <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este documento?');">Borrar</button>
-                        </form>
-                      </td>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
                     </tr>
-                <% }); %>
-              <% } else { %>
-                <tr>
-                  <td colspan="4" style="text-align: center;">No hay documentos disponibles</td>
-                </tr>
-              <% } %>
-            </tbody>
-          </table>
+                </thead>
+                <tbody>
+                    <% if (documents.length > 0) { %>
+                        <% documents.forEach(doc => { %>
+                            <tr>
+                                <td><%= doc.id %></td>
+                                <td><%= doc.nombre %></td>
+                                <td><%= doc.tipo_archivo %></td>
+                                <td>
+                                    <form action="/documentos/<%= doc.id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar este documento?');">
+                                        <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="4" class="text-center">No hay documentos disponibles</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
         </div>
-
-        <button class="btnSubir" onclick="location.href='/documentos/crear'">
-          Agregar Documento
-        </button>
-      </div>
-    </section>
-
-    <%- include('partials/footer.ejs') %> 
+        <div class="text-center mt-3">
+            <a href="/documentos/crear" class="btn btn-success">Agregar Documento</a>
+        </div>
+    </div>
+    
+    <%- include('partials/footer.ejs') %>
     <%- include('partials/scripts.ejs') %>
-  </body>
+</body>
 </html>
