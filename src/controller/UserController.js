@@ -1,5 +1,14 @@
 import pool from "../config/db.js";
 import session from "express-session"; // Asegúrate de tener esta dependencia instalada
+import path from "path";
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+
+
+// Obtener el nombre y la ruta del archivo actual
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 export const perfil = (req, res) => {
   res.render("perfil");
@@ -39,8 +48,6 @@ export const documentosUser = async (req, res) => {
 
     // Renderizar la página con los documentos obtenidos
     return res.render("documents", { usuario: req.session.usuario, documents });
-
-    
   } catch (error) {
     console.error("Error al obtener documentos:", error.message);
     req.session.error = error.message; // Guardar el error en la sesión
@@ -48,12 +55,7 @@ export const documentosUser = async (req, res) => {
   }
 };
 
-
 export const crearDocumento = (req, res) => {
-  res.render("newDocument");
-};
-
-export const usuarios = (req, res) => {
   res.render("newDocument");
 };
 
@@ -103,7 +105,7 @@ export const crearUsuario = async (req, res) => {
     return res.redirect("/documentos");
   } catch (error) {
     console.error("Error al crear usuario:", error.message);
-    req.session.error = error.message; // Guardar el error en la sesión
+    req.session.error = error.message; // Obtiene el mensaje de error de la sesión
     return res.redirect("/registro"); // Redirigir a la página de registro
   }
 };
@@ -144,11 +146,89 @@ export const validarUsuario = async (req, res) => {
 
     console.log("Usuario autenticado:", req.session.usuario);
 
-    return res.redirect("/documentos"); // Redirigir a la página de inicio
+    if (usuario.correo == "admin@main.com") {
+      return res.redirect("/usuarios");
+    } else {
+      return res.redirect("/documentos");
+    }
   } catch (error) {
     console.error("Error en login:", error.message);
     req.session.error = error.message; // Guardar el error en la sesión
     return res.redirect("/login"); // Redirigir al login si hay error
+  }
+};
+
+export const usuarios = async (req, res) => {
+  if (!req.session.usuario) {
+    req.session.error = "Necesita iniciar sesión para acceder.";
+    return res.redirect("/login"); // Redirigir a login si no hay sesión
+  }
+
+  try {
+    if (req.session.usuario.nombre !== "Admin") {
+      throw new Error("El usuario debe ser admin.");
+    }
+
+    // Obtener usuarios
+    const [users] = await pool.query(
+      "SELECT * FROM usuarios WHERE  nombre != 'Admin'"
+    );
+
+    console.log("Usuarios Extraídos:", users);
+
+    const errorMessage = req.session.error; // Obtiene el mensaje de error de la sesión
+    req.session.error = null;
+
+    return res.render("listaUsuarios", { users ,errorMessage});
+    
+  } catch (error) {
+    console.error("Error:", error.message);
+    req.session.error = error.message;
+    return res.redirect("/login");
+  }
+};
+
+
+export const eliminarUsuario = async (req, res) => {
+  const { userId } = req.params;
+
+  if (!userId) {
+    req.session.error = "Necesita pasar bien los datos";
+    return res.redirect("/usuarios");
+  }
+
+  try {
+    // 1️⃣ Obtener todos los documentos del usuario
+    const [documentos] = await pool.query(
+      "SELECT * FROM documentos WHERE usuario_id = ?",
+      [userId]
+    );
+
+    // 2️⃣ Eliminar los archivos locales
+    documentos.forEach((doc) => {
+      const filePathLocal = path.join(__dirname, "../documents", doc.nombre);
+      if (fs.existsSync(filePathLocal)) {
+        fs.unlinkSync(filePathLocal);
+        console.log(`Archivo ${doc.nombre} eliminado de la carpeta.`);
+      } else {
+        console.log(`Archivo ${doc.nombre} no encontrado.`);
+      }
+    });
+
+    // 3️⃣ Eliminar los documentos de la base de datos
+    await pool.query("DELETE FROM documentos WHERE usuario_id = ?", [userId]);
+
+    // 4️⃣ Eliminar al usuario de la base de datos
+    await pool.query("DELETE FROM usuarios WHERE id = ?", [userId]);
+
+    console.log("Usuario y documentos eliminados correctamente.");
+
+    // Cerrar sesión después de eliminar la cuenta
+    return res.redirect("/usuarios"); // Redirigir al login después de eliminar la cuenta
+  } catch (error) {
+    console.error("Error al eliminar usuario y documentos:", error.message);
+    req.session.error = error.message;
+    return res.redirect("/usuarios");
   }
 };
 

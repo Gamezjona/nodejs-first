@@ -11,6 +11,11 @@ const pool = mysql.createPool({
 });
 
 
+/* host: "194.195.84.154",  // Cambia esto según tu configuración
+  user: "u618100137_rosasebas",       // Usuario de MySQL
+  password: "Rosa.sebas22",       // Contraseña de MySQL
+  database: "u618100137_userdocument", */
+
 const testConnection = async () => {
   try {
     const [rows, fields] = await pool.query('SELECT 1');
