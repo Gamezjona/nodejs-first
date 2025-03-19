@@ -9,50 +9,46 @@
   <body>
     <%- include('partials/navigation.ejs',{ url: ""})%>
 
-    <section>
-      <div class="wrapper">
-        <h2 class="tituloWraper">Usuarios</h2>
-
-        <div class="table-container">
-          <table class="tablaWraper">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Editar</th>
-                <th>Borrar</th>
-              </tr>
-            </thead>
-            <tbody id="users">
-                <% if (users.length > 0) { %>
-                    <% users.forEach(doc => { %>
-                        <tr>
-                            <td><%= doc.id %></td>
-                            <td><%= doc.nombre %></td>
-                            <td><%= doc.correo %></td>
-                            <td><a href=<%= "/usuarios/" +doc.id + "/edit"  %>>Editar</a></td>
-                            <td>
-                              <!-- Usamos un formulario para enviar una solicitud DELETE -->
-                              <form action="/usuarios/<%= doc.id %>?_method=DELETE" method="POST" style="display:inline;">
-                                <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este documento?');">Borrar</button>
-                              </form>
-                            </td>
-                        </tr>
-                    <% }); %>
-                <% } else { %>
-                    <tr>
-                        <td colspan="3" style="text-align: center;">No hay documentos disponibles</td>
-                    </tr>
-                <% } %>
-            </tbody>
-          </table>
-        </div>
+    <section class="container mt-5 pt-5">
+      <h2 class="text-center mb-4 animate__animated animate__fadeIn">Usuarios</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered animate__animated animate__fadeInUp">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Editar</th>
+              <th>Borrar</th>
+            </tr>
+          </thead>
+          <tbody id="users">
+              <% if (users.length > 0) { %>
+                  <% users.forEach(doc => { %>
+                      <tr>
+                          <td><%= doc.id %></td>
+                          <td><%= doc.nombre %></td>
+                          <td><%= doc.correo %></td>
+                          <td><a href=<%= "/usuarios/" +doc.id + "/edit"  %>>Editar</a></td>
+                          <td>
+                            <form action="/usuarios/<%= doc.id %>?_method=DELETE" method="POST" style="display:inline;">
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este documento?');">Borrar</button>
+                            </form>
+                          </td>
+                      </tr>
+                  <% }); %>
+              <% } else { %>
+                  <tr>
+                      <td colspan="5" class="text-center">No hay documentos disponibles</td>
+                  </tr>
+              <% } %>
+          </tbody>
+        </table>
       </div>
     </section>
 
     <%- include('partials/alerts.ejs') %>
-    
-    <%- include('partials/footer.ejs') %> <%- include('partials/scripts.ejs') %>
+    <%- include('partials/footer.ejs') %> 
+    <%- include('partials/scripts.ejs') %>
   </body>
 </html>

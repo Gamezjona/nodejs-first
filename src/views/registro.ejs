@@ -4,36 +4,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro</title>
-    <%- include('partials/scripts.ejs') %> <%- include('partials/head.ejs') %>
+    <%- include('partials/scripts.ejs') %> 
+    <%- include('partials/head.ejs') %>
   </head>
   <body>
     <%- include('partials/navigationLogins.ejs') %>
 
-    <section>
-      <form action="/usuarios" method="post">
-        <h2>Registro</h2>
+    <div class="container mt-5 pt-5">
+      <div class="card shadow p-4 animate__animated animate__fadeIn">
+        <h2 class="text-center mb-4">Registro</h2>
+        <form action="/usuarios" method="post">
+          <div class="mb-3">
+            <label for="ipNombre" class="form-label">Nombre(s)</label>
+            <input id="ipNombre" name="nombre" type="text" class="form-control" required />
+          </div>
 
-        <label for="ipNombre">Nombre(s)</label>
-        <input id="ipNombre" name="nombre" type="text" required />
+          <div class="mb-3">
+            <label for="ipApellido" class="form-label">Apellidos</label>
+            <input id="ipApellido" name="apellido" type="text" class="form-control" required />
+          </div>
 
-        <label for="ipApellido">Apellidos</label>
-        <input id="ipApellido" name="apellido" type="text" required />
+          <div class="mb-3">
+            <label for="ipEmail" class="form-label">Correo Electrónico</label>
+            <input id="ipEmail" name="email" type="email" class="form-control" required />
+          </div>
 
-        <label for="ipEmail">Correo Electrónico</label>
-        <input id="ipEmail" name="email" type="email" required />
+          <div class="mb-3">
+            <label for="ipPwd" class="form-label">Contraseña</label>
+            <input id="ipPwd" name="password" type="password" class="form-control" required />
+          </div>
 
-        <label for="ipPwd">Contraseña</label>
-        <input id="ipPwd" name="password" type="password" required />
+          <div class="mb-3">
+            <label for="ipPwd2" class="form-label">Confirmar Contraseña</label>
+            <input id="ipPwd2" name="password2" type="password" class="form-control" required />
+          </div>
 
-        <label for="ipPwd2">Confirmar Contraseña</label>
-        <input id="ipPwd2" name="password2" type="password" required />
-
-        <input type="submit" value="Enviar" class="btn btn-primary" />
-      </form>
-    </section>
+          <div class="d-flex justify-content-center">
+            <input type="submit" value="Enviar" class="btn btn-primary" />
+          </div>
+        </form>
+      </div>
+    </div>
 
     <%- include('partials/alerts.ejs') %>
-    <!-- Agregar script de Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <%- include('partials/scripts.ejs') %>
   </body>
 </html>
