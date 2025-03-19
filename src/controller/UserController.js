@@ -215,10 +215,7 @@ export const usuarios = async (req, res) => {
   }
 
   try {
-    if (req.session.usuario.nombre !== "Admin") {
-      throw new Error("El usuario debe ser admin.");
-    }
-
+      
     // Obtener usuarios
     const [users] = await pool.query(
       "SELECT * FROM usuarios WHERE  nombre != 'Admin'"
