@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi perfil</title>
+    <title>Mi Perfil</title>
     <%- include('partials/head.ejs') %>
 </head>
 <body>
     <%- include('partials/navigation.ejs') %>
-
-
+    
+    <div class="container mt-4">
+        <h2 class="text-center">Mi Perfil</h2>
+        <div class="card shadow p-4">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="/img/default-avatar.png" class="img-fluid rounded-circle" alt="Avatar" width="150">
+                </div>
+                <div class="col-md-8">
+                    <p><strong>Nombre:</strong> <%= usuario.nombre %> <%= usuario.apellido %></p>
+                    <p><strong>Correo:</strong> <%= usuario.email %></p>
+                    <p><strong>Fecha de Registro:</strong> <%= usuario.fecha_registro %></p>
+                    <a href="/perfil/editar" class="btn btn-warning">Editar Perfil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <%- include('partials/footer.ejs') %>
-
-    <%- include('partials/scripts.ejs') %> 
-    <%- include('partials/alerts.ejs') %>  
-     
+    <%- include('partials/scripts.ejs') %>
 </body>
 </html>

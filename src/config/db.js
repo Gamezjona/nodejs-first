@@ -1,10 +1,10 @@
 import mysql from "mysql2/promise";
 
 const pool = mysql.createPool({
-  host: "localhost",  // Cambia esto según tu configuración
-  user: "root",       // Usuario de MySQL
-  password: "",       // Contraseña de MySQL
-  database: "userdocument", // Nombre de la base de datos
+  host: "194.195.84.154",  // Cambia esto según tu configuración
+  user: "u618100137_rosasebas",       // Usuario de MySQL
+  password: "Rosa.sebas22",       // Contraseña de MySQL
+  database: "u618100137_userdocument", // Nombre de la base de datos
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

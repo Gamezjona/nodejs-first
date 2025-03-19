@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> JOBUSS | Nuevo Documento</title>
+    <title>Nuevo Documento</title>
     <%- include('partials/head.ejs') %>
 </head>
 <body>
     <%- include('partials/navigation.ejs') %>
-
-    <h1>Nuevo Fomulario para documento</h1>
-
-    <form action="/documentos" method="POST" enctype="multipart/form-data">
-        <input type="file" name="archivo">  <!-- El nombre debe coincidir con el usado en multer -->
-        <button type="submit">Subir</button>
-    </form>
-
+    
+    <div class="container mt-5">
+        <div class="card shadow p-4">
+            <h2 class="text-center">Subir Nuevo Documento</h2>
+            <form action="/documentos" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="archivo" class="form-label">Seleccionar Archivo</label>
+                    <input type="file" class="form-control" id="archivo" name="archivo" required>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Subir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <%- include('partials/footer.ejs') %>
-
-    <%- include('partials/scripts.ejs') %> 
-    <%- include('partials/alerts.ejs') %>  
-     
+    <%- include('partials/scripts.ejs') %>
 </body>
 </html>
