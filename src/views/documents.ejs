@@ -11,7 +11,7 @@
         <%- include('partials/navigation.ejs', { url: "<a class='nav-link' href='/usuarios/" + usuario.id + "/edit'>Perfil</a>"}) %>
     
         <div class="container mt-4">
-            <h2 class="text-center">Documentos Subidos</h2>
+            <h2 class="text-center">Documentos Subidos <%= usuario.nombre %></h2>
             <div class="table-responsive shadow-lg p-3 mb-5 bg-body rounded">
                 <table class="table table-hover table-bordered">
                     <thead class="table-dark text-center">
@@ -48,7 +48,8 @@
                 <a href="/documentos/crear" class="btn btn-success btn-lg shadow-sm">Agregar Documento</a>
             </div>
         </div>
-    
+        
+        
         <%- include('partials/footer.ejs') %>
         <%- include('partials/scripts.ejs') %>
     </body>

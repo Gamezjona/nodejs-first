@@ -9,7 +9,7 @@
 <body>
     <%- include('partials/navigationLogins.ejs') %>
 
-    <div class="container mt-5">
+    <div class="container mt-4">
         <h2 class="text-center">Registro</h2>
         <form action="/usuarios" method="post">
             <div class="mb-3">
@@ -40,7 +40,7 @@
             <button type="submit" class="btn btn-primary w-100">Registrar</button>
         </form>
     </div>
-
+    <%- include('partials/alerts.ejs') %>
     <%- include('partials/footer.ejs') %>
     <%- include('partials/scripts.ejs') %>
 </body>

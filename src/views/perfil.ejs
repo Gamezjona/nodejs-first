@@ -38,6 +38,17 @@
         </form>
     </div>
 
+    <%- include('partials/alerts.ejs') %>
+    <% if (successMessage) { %>
+        <script>
+          Swal.fire({
+            title: 'Exito!',
+            text: '<%= successMessage %>',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+        </script>
+      <% } %>
     <%- include('partials/footer.ejs') %>
     <%- include('partials/scripts.ejs') %>
 </body>

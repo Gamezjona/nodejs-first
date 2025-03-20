@@ -140,16 +140,19 @@ export const editarUsuario = async (req, res) => {
       throw new Error("No se encontró el usuario para actualizar.");
     }
 
-    // Actualizar los datos del usuario en la sesión
-    req.session.usuario = {
-      id: id,
-      nombre,
-      apellido,
-      email,
-    };
+
+    if (req.session.usuario.email != "admin@main.com") {// Actualizar los datos del usuario en la sesión
+      req.session.usuario = {
+        id: id,
+        nombre,
+        apellido,
+        email,
+      };
+    }
 
     console.log("Usuario actualizado y guardado en sesión:", req.session.usuario);
 
+    req.session.success = "Usuario Actualizado";
     
     res.redirect("/usuarios/"+id+"/edit");
   } catch (error) {
@@ -286,6 +289,10 @@ export const usuarioPorId = async (req, res) => {
   const errorMessage = req.session.error; // Obtiene el mensaje de error de la sesión
   req.session.error = null;
 
+
+  const successMessage = req.session.success;
+  req.session.success = null;
+
   const { id } = req.params; // Obtener ID desde los parámetros de la URL
 
   if (!id) {
@@ -315,7 +322,9 @@ export const usuarioPorId = async (req, res) => {
       contrasena: usuario[0].contrasena,
     };
 
-    res.render("perfil", { errorMessage, user , usuario: req.session.usuario });
+    
+
+    res.render("perfil", { errorMessage, user , usuario: req.session.usuario,successMessage});
 
   } catch (error) {
     console.error("Error al ir al perfil:", error.message);

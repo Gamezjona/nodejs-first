@@ -11,7 +11,7 @@
 <body>
     <%- include('partials/navigation.ejs', { url: "<a class='nav-link' href='/usuarios/" + usuario.id + "/edit'>Perfil</a>"}) %>
     
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="card shadow p-4">
             <h2 class="text-center">Subir Nuevo Documento</h2>
             <form action="/documentos" method="POST" enctype="multipart/form-data">
@@ -26,6 +26,7 @@
         </div>
     </div>
     
+    <%- include('partials/alerts.ejs') %>
     <%- include('partials/footer.ejs') %>
     <%- include('partials/scripts.ejs') %>
 </body>
