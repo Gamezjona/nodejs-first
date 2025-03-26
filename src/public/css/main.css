@@ -1,0 +1,58 @@
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color:url('https://images.pexels.com/photos/29738255/pexels-photo-29738255/free-photo-of-representacion-abstracta-de-un-paisaje-urbano-en-3d-con-degradado.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  overflow-x: hidden;
+  padding-top: 56px;
+}
+
+
+/* Estilos para Login */
+.login-body {
+  background: url('https://images.pexels.com/photos/38722/pexels-photo-38722.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-container {
+  width: 100%;
+  animation: fadeInUp 0.8s;
+}
+
+.login-card {
+  border-radius: 15px;
+  border: none;
+  background: rgba(169, 154, 213, 0.553);
+}
+
+.login-title {
+  color: #343a40;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.login-input {
+  border-radius: 8px;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s;
+}
+
+.login-input:focus {
+  border-color: #6b93af;
+  box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
+}
+
+.login-btn {
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(125, 0, 179, 0.2);
+}
