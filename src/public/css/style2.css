@@ -1,0 +1,181 @@
+
+.documents-page,
+.new-document-page,
+.perfil-page,
+.lista-usuarios-page {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: url('https://images.pexels.com/photos/38722/pexels-photo-38722.jpeg') no-repeat center center fixed;
+  background-size: cover; 
+}
+
+.navbar {
+padding: fixed;
+top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+}
+
+.main-content-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  flex: 1;
+}
+
+.content-card {
+  background: rgba(169, 154, 213, 0.7);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.page-title {
+  color: #343a40;
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* --------------DOCUEMENTS----------------- */
+.documents-header {
+  margin-bottom: 30px;
+}
+
+.user-name {
+  color: #6f42c1;
+  font-weight: 700;
+}
+
+.documents-table {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-add-document {
+  background-color: #6f42c1;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.btn-add-document:hover {
+  background-color: #5a32b0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+/* --------------NEWDOCUMENT----------------- */
+.document-form-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.btn-upload {
+  background-color: #6f42c1;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.btn-upload:hover {
+  background-color: #5a32b0;
+  transform: translateY(-2px);
+}
+
+/* --------------PERFIL----------------- */
+.perfil-form-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.login-input:focus {
+  border-color: #6b93af;
+  box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
+}
+
+.login-btn {
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+/* --------------LISTAUSUARIOS----------------- */
+.user-table-container {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.user-table {
+  background-color: transparent;
+}
+
+
+@media (max-width: 768px) {
+  .main-content-container {
+    padding: 15px;
+  }
+  
+  .content-card {
+    padding: 20px;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .btn-add-document, .btn-upload {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
+
+
+
+@media (max-width: 575.98px) {
+  .navbar {
+    padding: 0.5rem 0; 
+  }
+  
+  .navbar-brand, 
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+  
+  footer {
+    padding: 10px 0;
+    font-size: 0.8rem; 
+  }
+  
+  body {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .main-content-container {
+    padding-left: 5px;
+    padding-right: 5px;
+  }}

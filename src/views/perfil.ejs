@@ -5,37 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi perfil</title>
     <%- include('partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/style2.css">
 </head>
-<body>
+<body class="perfil-page">
     <%- include('partials/navigation.ejs', { url: ""}) %>
 
-    <div class="container mt-4">
-        <h2 class="text-center">Mi Perfil</h2>
-        <form action="/usuarios/edit" method="POST">
-            <input type="hidden" name="id" value="<%= user.id %>">
+    <div class="main-content-container">
+        <div class="content-card perfil-form-card">
+            <h2 class="page-title">Mi Perfil</h2>
+            <form action="/usuarios/edit" method="POST">
+                <input type="hidden" name="id" value="<%= user.id %>">
 
-            <div class="mb-3">
-                <label for="ipNombre" class="form-label">Nombre(s)</label>
-                <input type="text" class="form-control" id="ipNombre" name="nombre" value="<%= user.nombre %>" required>
-            </div>
+                <div class="mb-3">
+                    <label for="ipNombre" class="form-label">Nombre(s)</label>
+                    <input type="text" class="form-control login-input" id="ipNombre" name="nombre" value="<%= user.nombre %>" required>
+                </div>
 
-            <div class="mb-3">
-                <label for="ipApellido" class="form-label">Apellidos</label>
-                <input type="text" class="form-control" id="ipApellido" name="apellido" value="<%= user.apellido %>" required>
-            </div>
+                <div class="mb-3">
+                    <label for="ipApellido" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control login-input" id="ipApellido" name="apellido" value="<%= user.apellido %>" required>
+                </div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" name="email" value="<%= user.correo %>" required>
-            </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control login-input" id="email" name="email" value="<%= user.correo %>" required>
+                </div>
 
-            <div class="mb-3">
-                <label for="ipPwd" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="ipPwd" name="password" value="<%= user.contrasena %>" required>
-            </div>
+                <div class="mb-3">
+                    <label for="ipPwd" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control login-input" id="ipPwd" name="password" value="<%= user.contrasena %>" required>
+                </div>
 
-            <button type="submit" class="btn btn-primary w-100">Actualizar</button>
-        </form>
+                <button type="submit" class="btn btn-primary w-100 login-btn">Actualizar</button>
+            </form>
+        </div>
     </div>
 
     <%- include('partials/alerts.ejs') %>

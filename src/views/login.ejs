@@ -7,30 +7,42 @@
     <%- include('partials/head.ejs') %>
 </head>
 <body class="login-body">
+    <%- include('partials/navigationLogins.ejs') %>
+
     <div class="login-container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="card login-card shadow">
-                    <div class="card-body">
-                        <h2 class="login-title text-center mb-4">Iniciar Sesión</h2>
-                        <form action="/login" method="post" class="login-form">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control login-input" id="email" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control login-input" id="password" name="password" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary login-btn w-100">Ingresar</button>
-                        </form>
-                    </div>
+        <div class="login-card">
+            <h2 class="login-title text-center mb-4">Iniciar Sesión</h2>
+            <form action="/login" method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control login-input" id="email" name="email" required>
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control login-input" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary login-btn w-100">Ingresar</button>
+            </form>
         </div>
     </div>
 
-    <%- include('partials/alerts.ejs') %>
+    <%- include('partials/footer.ejs') %>
     <%- include('partials/scripts.ejs') %>
+
+    <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    navbarToggler.addEventListener('click', function() {
+      if (navbarCollapse.classList.contains('show')) {
+        document.body.style.paddingTop = '56px';
+      } else {
+        document.body.style.paddingTop = '200px'; 
+      }
+    });
+  });
+</script>
 </body>
 </html>

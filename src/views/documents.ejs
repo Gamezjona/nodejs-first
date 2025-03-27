@@ -1,19 +1,23 @@
-    <!-- documents.ejs -->
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Documentos</title>
-        <%- include('partials/head.ejs') %>
-    </head>
-    <body>
-        <%- include('partials/navigation.ejs', { url: "<a class='nav-link' href='/usuarios/" + usuario.id + "/edit'>Perfil</a>"}) %>
-    
-        <div class="container mt-4">
-            <h2 class="text-center">Documentos Subidos <%= usuario.nombre %></h2>
-            <div class="table-responsive shadow-lg p-3 mb-5 bg-body rounded">
-                <table class="table table-hover table-bordered">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos</title>
+    <%- include('partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body class="documents-page">
+    <%- include('partials/navigation.ejs', { url: "<a class='nav-link' href='/usuarios/" + usuario.id + "/edit'>Perfil</a>"}) %>
+
+    <div class="main-content-container">
+        <div class="content-card">
+            <div class="documents-header">
+                <h2 class="page-title">Documentos Subidos <span class="user-name"><%= usuario.nombre %></span></h2>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered documents-table">
                     <thead class="table-dark text-center">
                         <tr>
                             <th>ID</th>
@@ -28,10 +32,12 @@
                                 <tr>
                                     <td class="text-center"><%= doc.id %></td>
                                     <td><%= doc.nombre %></td>
-                                    <td class="text-center"><%= doc.tipo_archivo %></td>
+                                    <td class="text-center"><span class="badge bg-secondary"><%= doc.tipo_archivo %></span></td>
                                     <td class="text-center">
                                         <form action="/documentos/<%= doc.id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar este documento?');">
-                                            <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash-alt"></i> Borrar
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
@@ -44,13 +50,16 @@
                     </tbody>
                 </table>
             </div>
-            <div class="text-center mt-3">
-                <a href="/documentos/crear" class="btn btn-success btn-lg shadow-sm">Agregar Documento</a>
+
+            <div class="text-center mt-4">
+                <a href="/documentos/crear" class="btn btn-add-document">
+                    <i class="fas fa-plus"></i> Agregar Documento
+                </a>
             </div>
         </div>
-        
-        
-        <%- include('partials/footer.ejs') %>
-        <%- include('partials/scripts.ejs') %>
-    </body>
-    </html>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+    <%- include('partials/scripts.ejs') %>
+</body>
+</html>
